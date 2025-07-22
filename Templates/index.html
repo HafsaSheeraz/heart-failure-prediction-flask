@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Heart Failure Risk Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Heart Failure Risk Predictor</h2>
+        <form action="{{ url_for('predict') }}" method="POST" id="predict-form">
+            <label>Age:</label>
+            <input type="number" name="age" required><br>
+
+            <label>Anaemia (0 or 1):</label>
+            <input type="number" name="anaemia" required><br>
+
+            <label>Creatinine Phosphokinase:</label>
+            <input type="number" name="creatinine_phosphokinase" required><br>
+
+            <label>Diabetes (0 or 1):</label>
+            <input type="number" name="diabetes" required><br>
+
+            <label>Ejection Fraction:</label>
+            <input type="number" name="ejection_fraction" required><br>
+
+            <label>High Blood Pressure (0 or 1):</label>
+            <input type="number" name="high_blood_pressure" required><br>
+
+            <label>Platelets:</label>
+            <input type="number" name="platelets" step="any" required><br>
+
+            <label>Serum Creatinine:</label>
+            <input type="number" name="serum_creatinine" step="any" required><br>
+
+            <label>Serum Sodium:</label>
+            <input type="number" name="serum_sodium" required><br>
+
+            <label>Sex (0=Female, 1=Male):</label>
+            <input type="number" name="sex" required><br>
+
+            <label>Smoking (0 or 1):</label>
+            <input type="number" name="smoking" required><br>
+
+            <label>Time (in days):</label>
+            <input type="number" name="time" required><br>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction_message %}
+        <script>
+            window.onload = function () {
+                alert("{{ prediction_message }}");
+                document.getElementById("predict-form").reset();
+            };
+        </script>
+        {% endif %}
+    </div>
+</body>
+</html>
